@@ -1,0 +1,24 @@
+.appLeft {
+  padding: 10px;
+}
+
+.appLeft-container {
+  margin-top: 10px;
+  height: 300px;
+  overflow-y: scroll;
+}
+.appLeft-container {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* .appLeft__table {
+} */
+.appLeft__table tr {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border-radius: 3px;
+}
+.appLeft__table tr:nth-of-type(odd) {
+  background: rgb(235, 231, 231);
+}
