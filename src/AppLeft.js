@@ -1,13 +1,16 @@
 import { Card, CardContent } from '@material-ui/core'
-import React, { useState } from 'react';
-import './AppLeft.css'
+import React from 'react';
+import './AppLeft.css';
+import numeral from 'numeral';
+import Line from './Line';
 
-function AppLeft({ allCountryData }) {
+
+function AppLeft({ allCountriesData }) {
     const sortData = (data) => {
         return [...data].sort((a,b) => b.cases - a.cases);
     }
-    let tableData = sortData(allCountryData);
-    // console.log(allCountryData);
+    let tableData = sortData(allCountriesData);
+    // console.log(allCountriesData);
     // console.log(tableData);
     return (
         <div className="appLeft">
@@ -21,13 +24,14 @@ function AppLeft({ allCountryData }) {
                                     tableData?.map((item) => (
                                         <tr key={item.country}>
                                             <td>{item.country}</td>
-                                            <td>{item.cases}</td>
+                                            <td>{numeral(item.cases).format('0,0')}</td>
                                         </tr>
                                     ))
                                 }
                             </tbody>
                         </table>
                     </div>
+                    <Line />
                 </CardContent>
             </Card>
         </div>

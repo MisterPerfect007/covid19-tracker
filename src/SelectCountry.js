@@ -3,7 +3,7 @@ import { FormControl, MenuItem, Select } from '@material-ui/core';
 import uniqid from 'uniqid';
 
 
-function SelectCountry({ selectedCountry, allCountryData, changeCountry }) {
+function SelectCountry({ selectedCountry, allCountriesData, changeCountry }) {
     return (
         <div style={{background: '#fff'}}>
             <FormControl variant="outlined">
@@ -13,7 +13,7 @@ function SelectCountry({ selectedCountry, allCountryData, changeCountry }) {
             >
               <MenuItem value="worldwide">Worldwide</MenuItem>
               {
-                  allCountryData.map(item => (
+                  allCountriesData.map(item => (
                       <MenuItem key={uniqid()} value={item.countryInfo.iso3}>{item.country}</MenuItem>
                   ))
               }

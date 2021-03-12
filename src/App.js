@@ -6,18 +6,32 @@ import SelectCountry from './SelectCountry';
 
 function App() {
   const [selectedCountry, setSelectedCountry] = useState('worldwide');
-  const [allCountryData, setAllCountryData] = useState([]);
+  const [allCountriesData, setAllCountriesData] = useState([]);
+  const [selectedCountryData, setSelectedCountryData] = useState({});
   useEffect(() => {
-    async function fetchAllCountryData() {
+    async function fetchAllCountriesData() {
       await fetch('https://disease.sh/v3/covid-19/countries')
       .then(response => response.json())
-      .then(data => setAllCountryData(data))
+      .then(data => setAllCountriesData(data))
     }
-    fetchAllCountryData()
+    fetchAllCountriesData()
   }, [])
+  useEffect(() => {
+    async function fetchSelectedCountryData() {
+      selectedCountry === 'worldwide'? await fetch('https://disease.sh/v3/covid-19/all')
+      .then(response => response.json())
+      .then(data => setSelectedCountryData(data)) 
+          : await fetch(`https://disease.sh/v3/covid-19/countries/${selectedCountry}?strict=true`)
+      .then(response => response.json())
+      .then(data => setSelectedCountryData(data))
+      // .then(data => console.log(data))
+    }
+    fetchSelectedCountryData()
+  }, [selectedCountry])
   const changeCountry = (e) => {
     setSelectedCountry(e.target.value);
-  }
+  } 
+  console.log(selectedCountryData);
   return (
     <div className="app">
       <div className="app__right">
@@ -25,19 +39,31 @@ function App() {
           <h1>Covid-19 tracker</h1>
           <SelectCountry 
             selectedCountry={selectedCountry} 
-            allCountryData={allCountryData}
+            allCountriesData={allCountriesData}
             changeCountry={changeCountry}
           />
           
         </header>
         <div className="app__infoBoxes">
-          <InfoBox title="Cases"/>
-          <InfoBox title="Recovered"/>
-          <InfoBox title="Deaths"/>
+          <InfoBox 
+            title="Cases" 
+            total={selectedCountryData.cases}
+            todayTotal={selectedCountryData.todayCases}
+          />
+          <InfoBox 
+            title="Recovered"
+            total={selectedCountryData.recovered}
+            todayTotal={selectedCountryData.todayRecovered}
+          />
+          <InfoBox 
+            title="Deaths"
+            total={selectedCountryData.deaths}
+            todayTotal={selectedCountryData.todayDeaths}
+          />
         </div>
       </div>
       <div className="app__left">
-        <AppLeft allCountryData={allCountryData} />
+        <AppLeft allCountriesData={allCountriesData} />
       </div>
     </div>
   );
