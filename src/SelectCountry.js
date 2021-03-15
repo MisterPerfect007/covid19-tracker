@@ -14,7 +14,7 @@ function SelectCountry({ selectedCountry, allCountriesData, changeCountry }) {
               <MenuItem value="worldwide">Worldwide</MenuItem>
               {
                   allCountriesData.map(item => (
-                      <MenuItem key={uniqid()} value={item.countryInfo.iso3}>{item.country}</MenuItem>
+                      <MenuItem key={uniqid()} value={item.country}>{item.country}</MenuItem>
                   ))
               }
             </Select>

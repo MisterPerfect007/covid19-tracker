@@ -1,6 +1,50 @@
 .infoBox {
   flex: 1;
+  max-width: 300px;
+  min-width: 120px;
 }
 .infoBox:not(:last-child) {
   margin-right: 10px;
+}
+.Cases-color {
+  color: rgb(255, 187, 0);
+}
+.Deaths-color {
+  color: rgb(255, 0, 0);
+}
+.Recovered-color {
+  color: rgb(9, 255, 0);
+}
+.Cases-border .MuiPaper-root {
+  border-top: 5px solid rgb(255, 187, 0, 0.5);
+}
+.Deaths-border .MuiPaper-root {
+  border-top: 5px solid rgba(255, 0, 0, 0.5);
+}
+.Recovered-border .MuiPaper-root {
+  border-top: 5px solid rgba(9, 255, 0, 0.5);
+}
+/* .Recovered-border .MuiPaper-root .MuiTypography-body1 {
+  padding-top: -8px;
+} */
+.infoBox .MuiPaper-root {
+  height: 110px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.infoBox .MuiCardContent-root {
+  padding: 10px;
+}
+.infoBox .MuiTypography-body1 {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.657);
+}
+.infoBox .MuiTypography-h4 {
+  font-weight: 600;
+  font-size: 30px;
+}
+.infoBox .MuiTypography-h6 {
+  font-weight: 700;
+  font-size: 13px;
 }

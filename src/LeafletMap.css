@@ -1,0 +1,15 @@
+.leafletMap {
+  height: 405px;
+  background-color: #fff;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.leafletMap .leaflet-container {
+  height: 100%;
+  /* background: #fff; */
+}
+.leafletMap .leaflet-container .leaflet-map-pane {
+  height: 100%;
+}
