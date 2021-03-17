@@ -1,4 +1,4 @@
-export function buildChartData(data, selectedCountry = 'worldwide', casesType = 'cases') {
+export function buildChartData(data = {}, selectedCountry = 'worldwide', casesType = 'cases') {
     let dataBuilt = [];
     let lastDataPoint;
     console.log(selectedCountry);
@@ -27,4 +27,21 @@ export function buildChartData(data, selectedCountry = 'worldwide', casesType = 
     }
     console.log("done")
     return dataBuilt;
+}
+export function buildMapData(allCountriesData, worldwideData, casesType = 'cases') {
+    let mapData = [];
+    console.log(allCountriesData);
+    mapData = allCountriesData.map(country => {
+        return {
+            country: country.country,
+            lat: country.countryInfo.lat,
+            long: country.countryInfo.long,
+            cases: country.cases,
+            recovered: country.recovered,
+            deaths: country.deaths,
+            flag: country.countryInfo.flag,
+            radius: ((country[casesType] * 100 ) / worldwideData[casesType]) * 5
+        }
+    })
+    return mapData;
 }

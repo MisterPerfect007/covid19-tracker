@@ -8,11 +8,13 @@ import LeafletMap from './LeafletMap';
 import '../node_modules/leaflet/dist/leaflet.css';
 
 function App() {
+  const [worldwideData, setWorldwideData] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('worldwide');
   const [allCountriesData, setAllCountriesData] = useState([]);
   const [selectedCountryData, setSelectedCountryData] = useState({});
   const [casesType, setCasesType] = useState('cases');
   const [mapCenter, setMapCenter] = useState([20.731457, -37.577247]);
+  const [zoom, setZoom] = useState(3);
   
   useEffect(() => {
     async function fetchAllCountriesData() {
@@ -28,13 +30,27 @@ function App() {
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        setSelectedCountryData(data)}) 
-          : await fetch(`https://disease.sh/v3/covid-19/countries/${selectedCountry}?strict=true`)
+        setSelectedCountryData(data)
+        setWorldwideData(data)
+        })
+          : 
+      await fetch(`https://disease.sh/v3/covid-19/countries/${selectedCountry}?strict=true`)
       .then(response => response.json())
-      .then(data => setSelectedCountryData(data))
+      .then(data => {
+        setSelectedCountryData(data)
+        if(selectedCountry !== 'worldwide') {
+          console.log([data.countryInfo.lat, data.countryInfo.long]);
+          setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+          setZoom(4);
+        }
+      }
+      )
       // .then(data => console.log(data))
+      
     }
     fetchSelectedCountryData()
+
+    //To focus on the selected country
   }, [selectedCountry])
   const changeCountry = (e) => {
     setSelectedCountry(e.target.value);
@@ -43,7 +59,7 @@ function App() {
     <div className="app">
       <div className="app__right">
         <header className="app__header">
-          <h1>Covid-19 tracker</h1>
+          <h1>COVID-19 tracker</h1>
           <SelectCountry 
             selectedCountry={selectedCountry} 
             allCountriesData={allCountriesData}
@@ -74,7 +90,14 @@ function App() {
             casesType={casesType}
           />
         </div>
-        <LeafletMap mapCenter={mapCenter} />
+        {/* The map */}
+        <LeafletMap 
+          zoom={zoom}
+          mapCenter={mapCenter} 
+          casesType={casesType} 
+          allCountriesData={allCountriesData}
+          worldwideData={worldwideData}
+        />
       </div>
       <div className="app__left">
         <AppLeft 

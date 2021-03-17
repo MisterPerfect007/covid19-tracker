@@ -13,3 +13,7 @@
 .leafletMap .leaflet-container .leaflet-map-pane {
   height: 100%;
 }
+.leafletMap .leaflet-popup-content img {
+  width: 125px;
+  border-radius: 6px;
+}

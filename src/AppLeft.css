@@ -27,3 +27,8 @@
 .appLeft__table tr > td:last-child {
   font-weight: 600;
 }
+@media only screen and (min-width: 800px) {
+  .appLeft {
+    max-width: 300px;
+  }
+}

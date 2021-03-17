@@ -48,3 +48,23 @@
   font-weight: 700;
   font-size: 13px;
 }
+@media screen and (max-width: 400px) {
+  .infoBox .MuiTypography-h4 {
+    font-size: 20px;
+  }
+  .infoBox .MuiPaper-root {
+    height: 80px;
+  }
+  .infoBox {
+    min-width: 60px;
+  }
+  .infoBox .MuiTypography-body1 {
+    font-size: 13px;
+  }
+  .infoBox .MuiTypography-h6 {
+    font-size: 12px;
+  }
+  .infoBox .MuiCardContent-root {
+    padding: 5px;
+  }
+}

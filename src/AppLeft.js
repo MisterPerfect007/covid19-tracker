@@ -8,8 +8,6 @@ import { buildChartData } from './util';
 
 function AppLeft({casesType, selectedCountry, allCountriesData }) {
     const [chartData, setChartData] = useState([]);
-    const [apiResponseData, setApiResponseData] = useState([]);
-
     useEffect(() => {
         const fetchChartData = async () => {
             console.log("fetchChartData");
@@ -23,7 +21,7 @@ function AppLeft({casesType, selectedCountry, allCountriesData }) {
             .then(data => {
                 console.log("not worldwide");
                 console.log("data >>", data);
-                setChartData(buildChartData(data, selectedCountry, casesType))})
+                data.message? alert('No live data from this country') : setChartData(buildChartData(data, selectedCountry, casesType))})
         }
         fetchChartData()
     }, [selectedCountry, casesType])

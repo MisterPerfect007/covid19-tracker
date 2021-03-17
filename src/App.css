@@ -17,12 +17,27 @@
 .app__header {
   flex: 1;
   display: flex;
+  justify-content: center;
+  align-items: center;
   justify-content: space-between;
+}
+.app__header h1 {
+  color: rgb(255, 0, 0);
 }
 .app__infoBoxes {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+@media only screen and (max-width: 800px) {
+  .app {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 460px) {
+  .app__header {
+    flex-direction: column;
+  }
 }
 
 /* 
